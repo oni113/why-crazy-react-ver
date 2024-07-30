@@ -12,7 +12,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
     const [description, setDescription] = useState(job.description || '');
     const [salary, setSalary] = useState(job.salary);
     const [location, setLocation] = useState(job.location || '');
-    const [companyName, setCompanyName] = useState(job.company.name || '');
+    const [companyName, setCompanyName] = useState(job.company.companyName || '');
     const [companyDescription, setCompanyDescription] = useState(job.company.description || '');
     const [contactEmail, setContactEmail] = useState(job.company.contactEmail || '');
     const [contactPhone, setContactPhone] = useState(job.company.contactPhone || '');
@@ -27,7 +27,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
             salary,
             location,
             'company': {
-                'name': companyName,
+                'companyName': companyName,
                 'description': companyDescription,
                 contactEmail,
                 contactPhone
@@ -43,7 +43,13 @@ const JobFormPage = ({ saveJobSubmit }) => {
         }
 
         saveJobSubmit(newJob)
-            .then(() => toast.success(`${doWhat} 성공!`));
+            .then((res) => {
+                if (res.ok) {
+                    toast.success(`${doWhat} 성공!`);
+                } else {
+                    toast.error(`${doWhat} 실패!`);
+                }
+            });
 
         return navigate(whereMoveTo);
     };
@@ -68,10 +74,10 @@ const JobFormPage = ({ saveJobSubmit }) => {
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
                                 >
-                                    <option value="Full-Time">Full-Time</option>
-                                    <option value="Part-Time">Part-Time</option>
-                                    <option value="Remote">Remote</option>
-                                    <option value="Internship">Internship</option>
+                                    <option value="FULL_TIME">Full-Time</option>
+                                    <option value="PART_TIME">Part-Time</option>
+                                    <option value="REMOTE">Remote</option>
+                                    <option value="INTERNSHIPaaa">Internship</option>
                                 </select>
                             </div>
 

@@ -9,18 +9,18 @@ import JobFormPage from './pages/JobFormPage';
 
 const App = () => {
     const addJob = async (newJob) => {
-        const res = await fetch('/api/jobs', {
+        const res = await fetch('/api/recruit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newJob)
         });
-        return;
+        return res;
     };
 
     const editJob = async (job) => {
-        const res = await fetch(`/api/jobs/${job.id}`, {
+        const res = await fetch(`/api/recruit/${job.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ const App = () => {
     };
 
     const deleteJob = async (id) => {
-        const res = await fetch(`/api/jobs/${id}`, {
+        const res = await fetch(`/api/recruit/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

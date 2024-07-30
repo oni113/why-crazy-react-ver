@@ -10,13 +10,17 @@ const JobList = ({ limit }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                let apiUrl = '/api/jobs';
-                if (limit > 0) {
-                    apiUrl += `?_limit=${limit}`;
+                let apiUrl = '/api/recruit';
+                if (limit && limit > 0) {
+                    apiUrl += `?pageSize=${limit}`;
+                } else {
+                    apiUrl += '/all';
                 }
                 const response = await fetch(apiUrl);
                 const data = await response.json();
-                
+                data.map((item) => {
+                    item.id = item.recruitId
+                });
                 setJobs(data);
             } catch (error) {
                 console.log('Error fetching data', error);

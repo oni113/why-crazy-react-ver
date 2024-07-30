@@ -10,8 +10,13 @@ const jobLoader = async ({ params }) => {
             'company' : {}
         };
     }
-    const response = await fetch(`/api/jobs/${params.id}`);
+    const response = await fetch(`/api/recruit/${params.id}`);
     const data = await response.json();
+    if (data) {
+        data.id = data.recruitId;
+        data.company.id = data.company.companyId;
+        data.company.name = data.company.companyName;
+    }
     return data;
 };
 
@@ -82,7 +87,7 @@ const JobPage = ({ deleteJob }) => {
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <h3 className="text-xl font-bold mb-6">Company Info</h3>
 
-                    <h2 className="text-2xl">{job.company.name}</h2>
+                    <h2 className="text-2xl">{job.company.companyName}</h2>
 
                     <p className="my-2">
                     {job.company.description}
