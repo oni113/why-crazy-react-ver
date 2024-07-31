@@ -3,20 +3,17 @@ import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const jobLoader = async ({ params }) => {
-    if (!params.id) {
+    console.log(params);
+    
+    if (!params.recruitId) {
         return {
             'type': 'Full-Time',
             'salary': 'Under $50K',
             'company' : {}
         };
     }
-    const response = await fetch(`/api/recruit/${params.id}`);
+    const response = await fetch(`/api/recruit/${params.recruitId}`);
     const data = await response.json();
-    if (data) {
-        data.id = data.recruitId;
-        data.company.id = data.company.companyId;
-        data.company.name = data.company.companyName;
-    }
     return data;
 };
 
@@ -31,8 +28,14 @@ const JobPage = ({ deleteJob }) => {
             return;
         }
 
-        deleteJob(job.id)
-          .then(() => toast.success('삭제 성공!'));
+        deleteJob(job.recruitId)
+          .then((res) => {
+              if (res.ok) {
+                  toast.success(`삭제 성공!`);
+              } else {
+                  toast.error(`삭제 실패!`);
+              }
+          });
         return navigate('/jobs');
     }
 
@@ -109,7 +112,7 @@ const JobPage = ({ deleteJob }) => {
                   <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                     <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                     <Link
-                      to={`/edit-job/${job.id}`}
+                      to={`/edit-job/${job.recruitId}`}
                       className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                       >Edit Job
                     </Link>

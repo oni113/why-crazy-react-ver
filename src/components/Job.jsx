@@ -14,7 +14,7 @@ const Job = ({ job }) => {
     const toggleShowDescription = () => setShowFullDescription((prevState) => !prevState);
 
     return (
-        <div className="bg-white rounded-xl shadow-md relative" key={job.id}>
+        <div className="bg-white rounded-xl shadow-md relative" key={job.recruitId}>
             <div className="p-4">
                 <div className="mb-6">
                     <div className="text-gray-600 my-2">{job.type}</div>
@@ -36,7 +36,7 @@ const Job = ({ job }) => {
                         <FaMapMarker className="inline text-lg mb-1 mr-1"/>
                         {job.location}
                     </div>
-                    <a href={`/jobs/${job.id}`} className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm">
+                    <a href={`/jobs/${job.recruitId}`} className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm">
                         Read More
                     </a>
                 </div>

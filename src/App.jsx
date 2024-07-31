@@ -20,24 +20,24 @@ const App = () => {
     };
 
     const editJob = async (job) => {
-        const res = await fetch(`/api/recruit/${job.id}`, {
+        const res = await fetch(`/api/recruit/${job.recruitId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(job)
         });
-        return;
+        return res;
     };
 
-    const deleteJob = async (id) => {
-        const res = await fetch(`/api/recruit/${id}`, {
+    const deleteJob = async (recruitId) => {
+        const res = await fetch(`/api/recruit/${recruitId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        return;
+        return res;
     };
 
     const router = createBrowserRouter(
@@ -46,8 +46,8 @@ const App = () => {
                 <Route index element={<HomePage/>}/>
                 <Route path='/add-job' element={<JobFormPage saveJobSubmit={addJob}/>} loader={ jobLoader }/>
                 <Route path='/jobs' element={<JobsPage/>}/>
-                <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>} loader={ jobLoader }/>
-                <Route path='/edit-job/:id' element={<JobFormPage saveJobSubmit={editJob}/>} loader={ jobLoader }/>
+                <Route path='/jobs/:recruitId' element={<JobPage deleteJob={deleteJob}/>} loader={ jobLoader }/>
+                <Route path='/edit-job/:recruitId' element={<JobFormPage saveJobSubmit={editJob}/>} loader={ jobLoader }/>
                 <Route path='*' element={<NotFoundPage/>}/>
             </Route>
         )

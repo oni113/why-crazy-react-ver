@@ -18,9 +18,6 @@ const JobList = ({ limit }) => {
                 }
                 const response = await fetch(apiUrl);
                 const data = await response.json();
-                data.map((item) => {
-                    item.id = item.recruitId
-                });
                 setJobs(data);
             } catch (error) {
                 console.log('Error fetching data', error);
@@ -42,7 +39,7 @@ const JobList = ({ limit }) => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {
                             jobs.map((job) => (
-                                <Job job={job} key={job.id}/>
+                                <Job job={job} key={job.recruitId}/>
                             ))
                         }
                     </div>

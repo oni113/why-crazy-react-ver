@@ -36,10 +36,11 @@ const JobFormPage = ({ saveJobSubmit }) => {
 
         let doWhat = '등록';
         let whereMoveTo = '/jobs';
-        if (job.id) {
-            newJob.id = job.id;
+        if (job.recruitId) {
+            newJob.recruitId = job.recruitId;
+            newJob.company.companyId = job.company.companyId;
             doWhat = '수정';
-            whereMoveTo += `/${job.id}`;
+            whereMoveTo += `/${job.recruitId}`;
         }
 
         saveJobSubmit(newJob)
@@ -61,7 +62,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
                     <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
                         <form onSubmit={saveJobForm}>
                             <h2 className="text-3xl text-center font-semibold mb-6">
-                                {!job.id ? 'Add Job' : 'Edit Job'}
+                                {!job.recruitId ? 'Add Job' : 'Edit Job'}
                             </h2>
 
                             <div className="mb-4">
@@ -77,7 +78,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
                                     <option value="FULL_TIME">Full-Time</option>
                                     <option value="PART_TIME">Part-Time</option>
                                     <option value="REMOTE">Remote</option>
-                                    <option value="INTERNSHIPaaa">Internship</option>
+                                    <option value="INTERNSHIP">Internship</option>
                                 </select>
                             </div>
 
@@ -203,7 +204,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
 
                             <div>
                                 <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline" type="submit">
-                                    {!job.id ? 'Add Job' : 'Edit Job'}
+                                    {!job.recruitId ? 'Add Job' : 'Edit Job'}
                                 </button>
                             </div>
                         </form>
