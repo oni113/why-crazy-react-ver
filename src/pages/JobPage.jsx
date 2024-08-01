@@ -3,8 +3,6 @@ import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const jobLoader = async ({ params }) => {
-    console.log(params);
-    
     if (!params.recruitId) {
         return {
             'type': 'Full-Time',
@@ -29,13 +27,13 @@ const JobPage = ({ deleteJob }) => {
         }
 
         deleteJob(job.recruitId)
-          .then((res) => {
-              if (res.ok) {
-                  toast.success(`삭제 성공!`);
-              } else {
-                  toast.error(`삭제 실패!`);
-              }
-          });
+            .then((res) => {
+                if (res.ok) {
+                    toast.success(`삭제 성공!`);
+                } else {
+                    toast.error(`삭제 실패!`);
+                }
+            });
         return navigate('/jobs');
     }
 
