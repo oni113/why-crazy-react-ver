@@ -10,7 +10,7 @@ const JobList = ({ limit }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                let apiUrl = '/api/recruit';
+                let apiUrl = '/server/api/recruit';
                 if (limit && limit > 0) {
                     apiUrl += `?pageSize=${limit}`;
                 } else {

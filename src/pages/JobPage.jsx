@@ -10,7 +10,7 @@ const jobLoader = async ({ params }) => {
             'company' : {}
         };
     }
-    const response = await fetch(`/api/recruit/${params.recruitId}`);
+    const response = await fetch(`/server/api/recruit/${params.recruitId}`);
     const data = await response.json();
     return data;
 };

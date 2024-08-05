@@ -10,7 +10,7 @@ const CompanyList = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await fetch('/api/recruit/companies');
+                const response = await fetch('/server/api/recruit/companies');
                     const data = await response.json();
                     setCompanies(data);
                 

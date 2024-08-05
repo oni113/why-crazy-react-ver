@@ -26,7 +26,7 @@ const Company = ({ company }) => {
                     </button>
                 </div>
                 <div className="mb-6">
-                <div className="text-gray-600 my-2">Contact</div>
+                    <div className="text-gray-600 my-2">Contact</div>
                     <div className="mb-2">{company.contactEmail}</div>
                     <div className="mb-2">{company.contactPhone}</div>
                 </div>
