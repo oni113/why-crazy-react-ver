@@ -2,19 +2,6 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-const jobLoader = async ({ params }) => {
-    if (!params.recruitId) {
-        return {
-            'type': 'Full-Time',
-            'salary': 'Under $50K',
-            'company' : {}
-        };
-    }
-    const response = await fetch(`/server/api/recruit/${params.recruitId}`);
-    const data = await response.json();
-    return data;
-};
-
 const JobPage = ({ deleteJob }) => {
     const job = useLoaderData();
 
@@ -30,11 +17,11 @@ const JobPage = ({ deleteJob }) => {
             .then((res) => {
                 if (res.ok) {
                     toast.success(`삭제 성공!`);
+                    return navigate('/jobs');
                 } else {
                     toast.error(`삭제 실패!`);
                 }
             });
-        return navigate('/jobs');
     }
 
     return (
@@ -128,4 +115,4 @@ const JobPage = ({ deleteJob }) => {
     )
 }
 
-export { JobPage as default, jobLoader };
+export default JobPage;

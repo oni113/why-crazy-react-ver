@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import Company from './Company';
+import CompanyService from '../services/CompanyService.js'
 
 const CompanyList = () => {
 
@@ -10,10 +11,7 @@ const CompanyList = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await fetch('/server/api/recruit/companies');
-                    const data = await response.json();
-                    setCompanies(data);
-                
+                setCompanies(await CompanyService.getCompanies());
             } catch (e) {
                 console.log('Error fetching data', error);
             } finally {

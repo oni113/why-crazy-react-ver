@@ -1,30 +1,35 @@
-import React, { useState } from 'react'
-import { useNavigate} from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import AuthContext from '../components/AuthContext.jsx'
+import UserService from '../services/UserService.js';
 
 const LoginPage = () => {
+    const { isLoggedIn, updateUser } = useContext(AuthContext);
+
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(isLoggedIn);
+        if (isLoggedIn) {
+            // navigate('/');   // why isLoggedIn true after refresh?
+        }
+    }, []);
+
     const signIn = async (e) => {
         e.preventDefault();
-        const response = await fetch(`/server/api/auth/signin`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        });
-        const data = await response.json();
+        
+        const data = await UserService.signIn(email, password);
         if (data.result === 1) {
+            updateUser(await UserService.getUserInfo());
             toast.success(`로그인 성공!`);
         } else {
             toast.error(`로그인 실패!`);
         }
-        // return useNavigate('/');
+        return navigate('/');
     };
 
     return (

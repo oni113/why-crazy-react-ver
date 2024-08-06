@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Job from './Job';
 import Spinner from './Spinner';
+import JobService from '../services/JobService.js';
 
 const JobList = ({ limit }) => {
 
@@ -10,21 +11,13 @@ const JobList = ({ limit }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                let apiUrl = '/server/api/recruit';
-                if (limit && limit > 0) {
-                    apiUrl += `?pageSize=${limit}`;
-                } else {
-                    apiUrl += '/all';
-                }
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                setJobs(data);
+                setJobs(await JobService.getJobs(limit));
             } catch (error) {
                 console.log('Error fetching data', error);
             } finally {
                 setLoading(false);
             }
-        }
+        };
 
         fetchJobs();
     }, []);

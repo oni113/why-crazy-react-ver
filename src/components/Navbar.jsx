@@ -5,7 +5,7 @@ import AuthContext from './AuthContext';
 
 const NavBar = () => {
 
-    const { user } = useContext(AuthContext);
+    const { isLoggedIn } = useContext(AuthContext);
 
     const linkClass = ({ isActive }) => isActive ? 'text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
 
@@ -25,7 +25,7 @@ const NavBar = () => {
                                 <NavLink to={'/add-job'} className={linkClass}>Add Job</NavLink>
                                 <NavLink to={'/companies'} className={linkClass}>Companies</NavLink>
                                 {
-                                    user ? <NavLink to={'/mypage'} className={linkClass}>My Page</NavLink> : <NavLink to={'/sign-in'} className={linkClass}>Sign In</NavLink>
+                                    isLoggedIn ? <NavLink to={'/mypage'} className={linkClass}>My Page</NavLink> : <NavLink to={'/sign-in'} className={linkClass}>Sign In</NavLink>
                                 }
                             </div>
                         </div>
