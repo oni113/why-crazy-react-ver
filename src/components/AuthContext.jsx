@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
             try {
                 const res = await UserService.getUserInfo();
                 setUser(res);
-                setIsLoggedIn(true);
+                setIsLoggedIn(res.userId ? true : false);
             } catch (e) {
                 console.log(e);
             }
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
 
     const updateUser = (newUser) => {
         setUser(newUser);
-        setIsLoggedIn(true);
+        setIsLoggedIn(newUser.userId ? true : false);
     };
 
     return (
