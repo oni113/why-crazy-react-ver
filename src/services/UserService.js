@@ -31,9 +31,28 @@ const getUserInfo = async () => {
     return data;
 };
 
+const signOut = async () => {
+    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
+    if (!token) {
+        return;
+    }
+
+    const tokenValue = token.split('=')[1];
+    const res = await fetch(`/server/api/auth/signout`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenValue}`
+        }
+    });
+    const data = await res.json();
+    return data;
+};
+
 const UserService = {
     signIn,
-    getUserInfo
+    getUserInfo,
+    signOut
 };
 
 export default UserService;
