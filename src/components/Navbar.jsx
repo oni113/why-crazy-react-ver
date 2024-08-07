@@ -25,7 +25,12 @@ const NavBar = () => {
                                 <NavLink to={'/add-job'} className={linkClass}>Add Job</NavLink>
                                 <NavLink to={'/companies'} className={linkClass}>Companies</NavLink>
                                 {
-                                    isLoggedIn ? <NavLink to={'/mypage'} className={linkClass}>My Page</NavLink> : <NavLink to={'/sign-in'} className={linkClass}>Sign In</NavLink>
+                                    isLoggedIn ? 
+                                        <>
+                                            <NavLink to={'/mypage'} className={linkClass}>My Page</NavLink> 
+                                            <NavLink to={'/sign-out'} className={linkClass}>Sign out</NavLink> 
+                                        </>
+                                         : <NavLink to={'/sign-in'} className={linkClass}>Sign In</NavLink>
                                 }
                             </div>
                         </div>

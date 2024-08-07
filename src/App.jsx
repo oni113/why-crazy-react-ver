@@ -9,9 +9,11 @@ import JobFormPage from './pages/JobFormPage';
 import CompaniesPage from './pages/CompaniesPage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
+import SignOutPage from './pages/SignOutPage';
 import JobService from './services/JobService.js';
 
 const App = () => {
+
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path='/' element={<MainLayout/>}>
@@ -23,6 +25,7 @@ const App = () => {
                 <Route path='/companies' element={<CompaniesPage/>}/>
                 <Route path='/sign-in' element={<LoginPage/>}/>
                 <Route path='/mypage' element={<MyPage/>}/>
+                <Route path='/sign-out' element={<SignOutPage/>}/>
                 <Route path='*' element={<NotFoundPage/>}/>
             </Route>
         )
