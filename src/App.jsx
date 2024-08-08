@@ -10,6 +10,7 @@ import CompaniesPage from './pages/CompaniesPage';
 import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import SignOutPage from './pages/SignOutPage';
+import SignUpPage from './pages/SignUpPage';
 import JobService from './services/JobService.js';
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path='/sign-in' element={<LoginPage/>}/>
                 <Route path='/mypage' element={<MyPage/>}/>
                 <Route path='/sign-out' element={<SignOutPage/>}/>
+                <Route path='/sign-up' element={<SignUpPage/>}/>
                 <Route path='*' element={<NotFoundPage/>}/>
             </Route>
         )
