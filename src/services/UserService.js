@@ -1,3 +1,15 @@
+const signUp = async (newUser) => {
+    const response = await fetch('/server/api/auth/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUser)
+    });
+    const data = await response.json();
+    return data;
+};
+
 const signIn = async (email, password) => {
     const response = await fetch(`/server/api/auth/signin`, {
         method: 'POST',
@@ -11,7 +23,7 @@ const signIn = async (email, password) => {
     });
     const data = await response.json();
     return data;
-}
+};
 
 const getUserInfo = async () => {
     const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
@@ -50,6 +62,7 @@ const signOut = async () => {
 };
 
 const UserService = {
+    signUp,
     signIn,
     getUserInfo,
     signOut

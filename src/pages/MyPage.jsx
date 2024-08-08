@@ -8,10 +8,14 @@ const MyPage = () => {
 
     const navigate = useNavigate();
 
+    const moveToLoginPage = () => {
+        navigate('/sign-in');
+    };
+
     useEffect(() => {
         console.log(isLoggedIn);
         if (!isLoggedIn) {
-            // navigate('/sign-in');    // why isLoggedIn false after refresh?
+            moveToLoginPage();
         }
     }, []);
 

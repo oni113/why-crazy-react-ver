@@ -12,10 +12,14 @@ const LoginPage = () => {
 
     const navigate = useNavigate();
 
+    const moveToMain = () => {
+        navigate('/');
+    };
+
     useEffect(() => {
-        console.log(isLoggedIn);
+        console.log(`isLoggedIn? ${isLoggedIn}`)
         if (isLoggedIn) {
-            // navigate('/');   // why isLoggedIn true after refresh?
+            moveToMain();
         }
     }, []);
 
