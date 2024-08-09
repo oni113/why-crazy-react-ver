@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLoaderData, useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import AuthContext from '../components/AuthContext';
 
 const JobFormPage = ({ saveJobSubmit }) => {
     const job = useLoaderData();
+
+    const { hasAdminRole } = useContext(AuthContext);
 
     const navigate = useNavigate();
     
@@ -20,6 +23,11 @@ const JobFormPage = ({ saveJobSubmit }) => {
     const saveJobForm = (e) => {
         e.preventDefault();
         
+        if (!hasAdminRole) {
+            toast.error(`권한 없음!`);
+            return;
+        }
+
         let newJob = {
             type,
             title,

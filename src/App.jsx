@@ -14,7 +14,7 @@ import SignUpPage from './pages/SignUpPage';
 import JobService from './services/JobService.js';
 
 const App = () => {
-
+    
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path='/' element={<MainLayout/>}>

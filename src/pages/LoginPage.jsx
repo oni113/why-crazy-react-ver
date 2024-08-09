@@ -30,10 +30,10 @@ const LoginPage = () => {
         if (data.result === 1) {
             updateUser(await UserService.getUserInfo());
             toast.success(`로그인 성공!`);
+            navigate('/');
         } else {
             toast.error(`로그인 실패!`);
         }
-        return navigate('/');
     };
 
     return (

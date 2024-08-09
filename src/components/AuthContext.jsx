@@ -6,6 +6,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [ user, setUser ] = useState({});
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ hasAdminRole, setHasAdminRole ] = useState(false);
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -13,6 +14,7 @@ const AuthProvider = ({ children }) => {
                 const res = await UserService.getUserInfo();
                 setUser(res);
                 setIsLoggedIn(res.userId ? true : false);
+                setHasAdminRole(res.hasAdminRole);
             } catch (e) {
                 console.log(e);
             }
@@ -24,10 +26,11 @@ const AuthProvider = ({ children }) => {
     const updateUser = (newUser) => {
         setUser(newUser);
         setIsLoggedIn(newUser.userId ? true : false);
+        setHasAdminRole(newUser.hasAdminRole);
     };
 
     return (
-        <AuthContext.Provider value={{ user, isLoggedIn, updateUser }}>
+        <AuthContext.Provider value={{ user, isLoggedIn, hasAdminRole, updateUser }}>
             {children}
         </AuthContext.Provider>
     );
