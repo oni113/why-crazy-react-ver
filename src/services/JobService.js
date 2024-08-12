@@ -20,14 +20,22 @@ const getJob = async ({ params }) => {
     }
     const response = await fetch(`/server/api/recruit/${params.recruitId}`);
     const data = await response.json();
+
     return data;
 };
 
 const addJob = async (newJob) => {
-    const res = await fetch('/server/api/recruit', {
+    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
+    if (!token) {
+        return {};
+    }
+    const tokenValue = token.split('=')[1];
+
+    const res = await fetch('/server/admin/recruit/new', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenValue}`
         },
         body: JSON.stringify(newJob)
     });
@@ -35,10 +43,17 @@ const addJob = async (newJob) => {
 };
 
 const editJob = async (job) => {
-    const res = await fetch(`/server/api/recruit/${job.recruitId}`, {
+    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
+    if (!token) {
+        return {};
+    }
+    const tokenValue = token.split('=')[1];
+
+    const res = await fetch(`/server/admin/recruit/${job.recruitId}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenValue}`
         },
         body: JSON.stringify(job)
     });
@@ -46,10 +61,17 @@ const editJob = async (job) => {
 };
 
 const deleteJob = async (recruitId) => {
-    const res = await fetch(`/server/api/recruit/${recruitId}`, {
+    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
+    if (!token) {
+        return {};
+    }
+    const tokenValue = token.split('=')[1];
+
+    const res = await fetch(`/server/admin/recruit/${recruitId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenValue}`
         }
     });
     return res;

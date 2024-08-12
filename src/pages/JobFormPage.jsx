@@ -60,7 +60,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
                 }
             });
 
-        return navigate(whereMoveTo);
+        navigate(whereMoveTo);
     };
 
     return (
@@ -96,7 +96,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
                                 id="title" 
                                 name="title" 
                                 className="border rounded w-full py-2 px-3 mb-2" 
-                                placeholder="eg. Beautiful Apartment In Miami" 
+                                placeholder="eg. New Front-end Developer" 
                                 required
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -165,6 +165,7 @@ const JobFormPage = ({ saveJobSubmit }) => {
                                 name="companyName" 
                                 className="border rounded w-full py-2 px-3" 
                                 placeholder="Company Name"
+                                required
                                 value={companyName}
                                 onChange={(e) => setCompanyName(e.target.value)}
                             />
