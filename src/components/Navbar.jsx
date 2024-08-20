@@ -33,10 +33,10 @@ const NavBar = () => {
                                             <NavLink to={'/sign-out'} className={linkClass}>Sign out</NavLink> 
                                         </>
                                          :
-                                         <>
+                                        <>
                                             <NavLink to={'/sign-in'} className={linkClass}>Sign In</NavLink>
                                             <NavLink to={'/sign-up'} className={linkClass}>Sign Up</NavLink>
-                                         </>
+                                        </>
                                 }
                             </div>
                         </div>

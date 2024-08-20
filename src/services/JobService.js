@@ -13,8 +13,8 @@ const getJobs = async (limit) => {
 const getJob = async ({ params }) => {
     if (!params.recruitId) {
         return {
-            'type': 'Full-Time',
-            'salary': 'Under $50K',
+            'type': 'FULL_TIME',
+            'salary': 'UNDER_$50K',
             'company' : {}
         };
     }
