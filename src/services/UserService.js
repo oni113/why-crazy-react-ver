@@ -1,3 +1,5 @@
+import CommonService from './CommonService.js';
+
 const signUp = async (newUser) => {
     const response = await fetch('/server/api/auth/signup', {
         method: 'POST',
@@ -26,12 +28,11 @@ const signIn = async (email, password) => {
 };
 
 const getUserInfo = async () => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
-    if (!token) {
+    const tokenValue = CommonService.getAuthToken();
+    if (!tokenValue) {
         return {};
     }
 
-    const tokenValue = token.split('=')[1];
     const res = await fetch(`/server/user/mypage`, {
         method: 'GET',
         headers: {
@@ -44,12 +45,11 @@ const getUserInfo = async () => {
 };
 
 const signOut = async () => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
-    if (!token) {
+    const tokenValue = CommonService.getAuthToken();
+    if (!tokenValue) {
         return;
     }
 
-    const tokenValue = token.split('=')[1];
     const res = await fetch(`/server/api/auth/signout`, {
         method: 'DELETE',
         headers: {

@@ -1,3 +1,5 @@
+import CommonService from './CommonService.js';
+
 const getJobs = async (limit) => {
     let apiUrl = '/server/api/recruit';
     if (limit && limit > 0) {
@@ -25,11 +27,10 @@ const getJob = async ({ params }) => {
 };
 
 const addJob = async (newJob) => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
-    if (!token) {
+    const tokenValue = CommonService.getAuthToken();
+    if (!tokenValue) {
         return {};
     }
-    const tokenValue = token.split('=')[1];
 
     const res = await fetch('/server/admin/recruit/new', {
         method: 'POST',
@@ -43,11 +44,10 @@ const addJob = async (newJob) => {
 };
 
 const editJob = async (job) => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
-    if (!token) {
+    const tokenValue = CommonService.getAuthToken();
+    if (!tokenValue) {
         return {};
     }
-    const tokenValue = token.split('=')[1];
 
     const res = await fetch(`/server/admin/recruit/${job.recruitId}`, {
         method: 'PUT',
@@ -61,11 +61,10 @@ const editJob = async (job) => {
 };
 
 const deleteJob = async (recruitId) => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('auth-req='));
-    if (!token) {
+    const tokenValue = CommonService.getAuthToken();
+    if (!tokenValue) {
         return {};
     }
-    const tokenValue = token.split('=')[1];
 
     const res = await fetch(`/server/admin/recruit/${recruitId}`, {
         method: 'DELETE',
