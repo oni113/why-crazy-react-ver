@@ -11,7 +11,7 @@ import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import SignOutPage from './pages/SignOutPage';
 import SignUpPage from './pages/SignUpPage';
-import JobService from './services/JobService.js';
+import JobService from './services/JobService';
 
 const App = () => {
     

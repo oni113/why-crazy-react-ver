@@ -1,6 +1,6 @@
 const getCompanies = async () => {
-    const response = await fetch('/server/api/recruit/companies');
-    const data = await response.json();
+    const response: Response = await fetch('/server/api/recruit/companies');
+    const data: JSON = await response.json();
     return data;
 };
 

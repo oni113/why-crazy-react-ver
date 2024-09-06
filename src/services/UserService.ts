@@ -1,19 +1,19 @@
-import CommonService from './CommonService.js';
+import CommonService from './CommonService';
 
-const signUp = async (newUser) => {
-    const response = await fetch('/server/api/auth/signup', {
+const signUp = async (newUser: JSON) => {
+    const response: Response = await fetch('/server/api/auth/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newUser)
     });
-    const data = await response.json();
+    const data: JSON = await response.json();
     return data;
 };
 
-const signIn = async (email, password) => {
-    const response = await fetch(`/server/api/auth/signin`, {
+const signIn = async (email: string, password: string) => {
+    const response: Response = await fetch(`/server/api/auth/signin`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -23,41 +23,41 @@ const signIn = async (email, password) => {
             password
         })
     });
-    const data = await response.json();
+    const data: JSON = await response.json();
     return data;
 };
 
 const getUserInfo = async () => {
-    const tokenValue = CommonService.getAuthToken();
+    const tokenValue: unknown = CommonService.getAuthToken();
     if (!tokenValue) {
-        return {};
+        return {} as JSON;
     }
 
-    const res = await fetch(`/server/user/mypage`, {
+    const res: Response = await fetch(`/server/user/mypage`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${tokenValue}`
         }
     });
-    const data = await res.json();
+    const data: JSON = await res.json();
     return data;
 };
 
 const signOut = async () => {
-    const tokenValue = CommonService.getAuthToken();
+    const tokenValue: unknown = CommonService.getAuthToken();
     if (!tokenValue) {
         return;
     }
 
-    const res = await fetch(`/server/api/auth/signout`, {
+    const res: Response = await fetch(`/server/api/auth/signout`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${tokenValue}`
         }
     });
-    const data = await res.json();
+    const data: JSON = await res.json();
     return data;
 };
 

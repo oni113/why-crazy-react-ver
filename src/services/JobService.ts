@@ -1,14 +1,14 @@
-import CommonService from './CommonService.js';
+import CommonService from './CommonService';
 
-const getJobs = async (limit) => {
-    let apiUrl = '/server/api/recruit';
+const getJobs = async (limit: number) => {
+    let apiUrl: string = '/server/api/recruit';
     if (limit && limit > 0) {
         apiUrl += `?pageSize=${limit}`;
     } else {
         apiUrl += '/all';
     }
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    const response: Response = await fetch(apiUrl);
+    const data: JSON = await response.json();
     return data;
 };
 
@@ -17,22 +17,22 @@ const getJob = async ({ params }) => {
         return {
             'type': 'FULL_TIME',
             'salary': 'UNDER_$50K',
-            'company' : {}
+            'company' : {} as JSON
         };
     }
-    const response = await fetch(`/server/api/recruit/${params.recruitId}`);
-    const data = await response.json();
+    const response: Response = await fetch(`/server/api/recruit/${params.recruitId}`);
+    const data: JSON = await response.json();
 
     return data;
 };
 
-const addJob = async (newJob) => {
+const addJob = async (newJob: JSON) => {
     const tokenValue = CommonService.getAuthToken();
     if (!tokenValue) {
-        return {};
+        return {} as JSON;
     }
 
-    const res = await fetch('/server/admin/recruit/new', {
+    const res: Response = await fetch('/server/admin/recruit/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -46,10 +46,10 @@ const addJob = async (newJob) => {
 const editJob = async (job) => {
     const tokenValue = CommonService.getAuthToken();
     if (!tokenValue) {
-        return {};
+        return {} as JSON;
     }
 
-    const res = await fetch(`/server/admin/recruit/${job.recruitId}`, {
+    const res: Response = await fetch(`/server/admin/recruit/${job.recruitId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -60,13 +60,13 @@ const editJob = async (job) => {
     return res;
 };
 
-const deleteJob = async (recruitId) => {
+const deleteJob = async (recruitId: number) => {
     const tokenValue = CommonService.getAuthToken();
     if (!tokenValue) {
         return {};
     }
 
-    const res = await fetch(`/server/admin/recruit/${recruitId}`, {
+    const res: Response = await fetch(`/server/admin/recruit/${recruitId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

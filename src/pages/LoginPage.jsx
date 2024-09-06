@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AuthContext from '../components/AuthContext.jsx'
-import UserService from '../services/UserService.js';
+import UserService from '../services/UserService';
 
 const LoginPage = () => {
     const { isLoggedIn, updateUser } = useContext(AuthContext);

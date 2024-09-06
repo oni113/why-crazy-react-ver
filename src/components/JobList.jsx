@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Job from './Job';
 import Spinner from './Spinner';
-import JobService from '../services/JobService.js';
+import JobService from '../services/JobService';
 
 const JobList = ({ limit }) => {
 

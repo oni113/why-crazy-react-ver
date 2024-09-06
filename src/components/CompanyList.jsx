@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import Company from './Company';
-import CompanyService from '../services/CompanyService.js'
+import CompanyService from '../services/CompanyService'
 
 const CompanyList = () => {
 
