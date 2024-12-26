@@ -11,7 +11,10 @@ const CompanyList = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                setCompanies(await CompanyService.getCompanies());
+                const companies = await CompanyService.getCompanies();
+                if (companies && companies.length > 0) {
+                    setCompanies(companies);
+                }
             } catch (e) {
                 console.log('Error fetching data', error);
             } finally {
@@ -28,9 +31,9 @@ const CompanyList = () => {
                 {loading ? <Spinner loading={loading}/> : (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {
-                            companies.map((company) => {
+                            companies.length > 0 && (companies.map((company) => {
                                 return <Company company={company} key={company.companyId}/>
-                            })
+                            }))
                         }
                     </div>
                 )}

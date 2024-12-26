@@ -11,7 +11,10 @@ const JobList = ({ limit }) => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                setJobs(await JobService.getJobs(limit));
+                const jobs = await JobService.getJobs(limit);
+                if (jobs && jobs.length > 0) {
+                    setJobs(jobs);
+                }
             } catch (error) {
                 console.log('Error fetching data', error);
             } finally {
@@ -31,9 +34,9 @@ const JobList = ({ limit }) => {
                 {loading ? <Spinner loading={loading}/> : (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {
-                            jobs.map((job) => (
+                            jobs.length > 0 && (jobs.map((job) => (
                                 <Job job={job} key={job.recruitId}/>
-                            ))
+                            )))
                         }
                     </div>
                 )}
