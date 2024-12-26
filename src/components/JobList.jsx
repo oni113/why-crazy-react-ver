@@ -12,8 +12,8 @@ const JobList = ({ limit }) => {
         const fetchJobs = async () => {
             try {
                 const jobs = await JobService.getJobs(limit);
-                if (jobs && jobs.length > 0) {
-                    setJobs(jobs);
+                if (jobs && jobs.list.length > 0) {
+                    setJobs(jobs.list);
                 }
             } catch (error) {
                 console.log('Error fetching data', error);

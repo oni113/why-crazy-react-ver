@@ -12,8 +12,8 @@ const CompanyList = () => {
         const fetchCompanies = async () => {
             try {
                 const companies = await CompanyService.getCompanies();
-                if (companies && companies.length > 0) {
-                    setCompanies(companies);
+                if (companies && companies.list.length > 0) {
+                    setCompanies(companies.list);
                 }
             } catch (e) {
                 console.log('Error fetching data', error);
